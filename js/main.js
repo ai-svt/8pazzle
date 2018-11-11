@@ -198,10 +198,9 @@ window.onload = function () {
 
           var endScene = new enchant.nineleap.SplashScene();
 
-          endScene.scene.addChild(button);
+          endScene.scene.addChild(e);
 
           const clearImg = game.assets[IMAGE_CLEAR];
-          console.log(clearImg.width)
           clearImg.x = (WIN_SIZE - clearImg.width) / 2;
           clearImg.y = (WIN_SIZE - clearImg.height) / 2;
           endScene.scene.addChild(clearImg);
