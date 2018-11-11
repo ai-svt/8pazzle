@@ -3,10 +3,12 @@
 // ご自由に改造してお使いください。
 
 enchant();
+const MEMBER = "jeonghan";
 
 const WIN_WIDTH = 960;
 const WIN_SIZE = 3;
-const IMAGE = "img/hani3.png";
+const IMAGE = `img/${MEMBER}.png`;
+const IMAGE_CLEAR = "clear.png";
 
 const ONE_WIDTH = WIN_WIDTH / WIN_SIZE;
 const SHUFFLE_COUNT = 1;
@@ -17,7 +19,7 @@ window.onload = function () {
   var game = new Game(WIN_WIDTH, WIN_WIDTH);
   game.fps = 24;
 
-  var PRELOAD_MATERIAL = [IMAGE];
+  var PRELOAD_MATERIAL = [IMAGE, IMAGE_CLEAR];
   if (PRELOAD_MATERIAL) {
     game.preload(PRELOAD_MATERIAL);
   }
@@ -160,12 +162,51 @@ window.onload = function () {
       }
       if (c === PANEL_COUNT) {
         panel[p].tl.moveTo((panel[p].position % WIN_SIZE) * ONE_WIDTH,
-            ((panel[p].position / WIN_SIZE) | 0) * ONE_WIDTH, game.fps / 2,
-            enchant.Easing.QUAD_EASEINOUT);
+          ((panel[p].position / WIN_SIZE) | 0) * ONE_WIDTH, game.fps / 2,
+          enchant.Easing.QUAD_EASEINOUT);
         panel[p].tl.then(function () {
           game.rootScene.removeChild(grid);
-          const endTime = new Date().getTime() - game.startTime;
-          game.end(600000 - endTime, ((endTime / 1000) | 0) + '秒かかってクリア！');
+          const endTime = (new Date().getTime() - game.startTime) / 1000;
+          var tweet_label = new Label();
+          tweet_label.y = WIN_WIDTH / 4 * 3;
+          tweet_label.x = WIN_WIDTH / 2;
+          tweet_label.text = "Tweet";
+          tweet_label.color = "black";
+          tweet_label.backgroundColor = "white";
+          // タッチイベントを登録
+
+          var button = new Button("Tweet", "light");
+          button.width = ONE_WIDTH;
+          button.y = WIN_WIDTH / 4 * 3;
+          button.x = ONE_WIDTH;
+
+          button.addEventListener(enchant.Event.TOUCH_START, function(){
+              window.open().location.href=[
+                  'https://twitter.com/intent/tweet?text=',
+                encodeURIComponent(`cleared ${endTime}s. #${MEMBER} https://ai-svt.github.io/8pazzle/`)].join('');
+          });
+
+          var e = new Entity();
+          e._element = document.createElement('div');
+          e.width = WIN_SIZE;
+      //    e._element.innerHTML = "<h1>タグを使ってみよう！</h1><br><p>enchant.jsでタグを使ってみる。</p>";
+
+          e._element.innerHTML = "<a class=\"twitter-share-button\" href=\"https://twitter.com/intent/tweet\" target=\"_brank\">Tweet</a>";
+          e.x = WIN_WIDTH / 2;
+          e.y = WIN_WIDTH / 4 * 3;
+          e.color = "while";
+
+          var endScene = new enchant.nineleap.SplashScene();
+
+          endScene.scene.addChild(button);
+
+          const clearImg = game.assets[IMAGE_CLEAR];
+          console.log(clearImg.width)
+          clearImg.x = (WIN_SIZE - clearImg.width) / 2;
+          clearImg.y = (WIN_SIZE - clearImg.height) / 2;
+          endScene.scene.addChild(clearImg);
+
+          game.pushScene(endScene);
         });
       }
     }
