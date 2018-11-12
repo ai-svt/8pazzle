@@ -10,7 +10,7 @@ const IMAGE = `img/${MEMBER}.jpg`;
 const IMAGE_CLEAR = "clear.png";
 
 const ONE_WIDTH = WIN_WIDTH / WIN_SIZE;
-const SHUFFLE_COUNT = 1;
+const SHUFFLE_COUNT = 99;
 const PANEL_COUNT = WIN_SIZE * WIN_SIZE;
 
 window.onload = function () {
