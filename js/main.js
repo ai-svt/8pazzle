@@ -60,8 +60,8 @@ window.onload = function () {
                 nodes[i].position = this.position;
                 this.position = pos;
                 this.moved = true;
-                this.tl.moveTo((this.position % WIN_SIZE) * ONE_WIDTH,
-                    ((this.position / WIN_SIZE) | 0) * ONE_WIDTH, 2, enchant.Easing.QUAD_EASEINOUT);
+                this.tl.moveTo(this.x + ONE_WIDTH * x,
+                    this.y + ONE_WIDTH * y, 2, enchant.Easing.QUAD_EASEINOUT);
                 this.tl.then(function () {
                   this.moved = false;
                   game.endCheck();
@@ -101,12 +101,19 @@ window.onload = function () {
 
 //パネル配置
     const panel = [];
+    const gameImage = game.assets[IMAGE];
+    const cutWidth = gameImage.width / WIN_SIZE;
+    const cutHeight = gameImage.height / WIN_SIZE;
+    const diffX = (cutWidth - ONE_WIDTH) / 2;
+    const diffY = (cutHeight - ONE_WIDTH) / 2;
     for (let i = 0; i < PANEL_COUNT; i++) {
-      panel[i] = new Panel(ONE_WIDTH, ONE_WIDTH);
+      panel[i] = new Panel(cutWidth, cutHeight);
+      panel[i].scaleX = ONE_WIDTH / cutWidth;
+      panel[i].scaleY = ONE_WIDTH / cutHeight;
       panel[i].position = position[i];
       panel[i].frame = i;
-      panel[i].x = (panel[i].position % WIN_SIZE) * ONE_WIDTH;
-      panel[i].y = ((panel[i].position / WIN_SIZE) | 0) * ONE_WIDTH;
+      panel[i].x = (panel[i].position % WIN_SIZE) * ONE_WIDTH - diffX;
+      panel[i].y = ((panel[i].position / WIN_SIZE) | 0) * ONE_WIDTH - diffY;
       game.rootScene.addChild(panel[i]);
     }
     panel[p].x = panel[p].y = WIN_WIDTH;
@@ -120,8 +127,8 @@ window.onload = function () {
         }
       }
       if (c === PANEL_COUNT) {
-        panel[p].tl.moveTo((panel[p].position % WIN_SIZE) * ONE_WIDTH,
-            ((panel[p].position / WIN_SIZE) | 0) * ONE_WIDTH, game.fps / 2,
+        panel[p].tl.moveTo((panel[p].position % WIN_SIZE) * ONE_WIDTH- diffX,
+            ((panel[p].position / WIN_SIZE) | 0) * ONE_WIDTH- diffY, game.fps / 2,
             enchant.Easing.QUAD_EASEINOUT);
         panel[p].tl.then(function () {
           const endTime = (new Date().getTime() - game.startTime) / 1000;
@@ -132,6 +139,7 @@ window.onload = function () {
           result.text = `${endTime}s`;
           result.x = (WIN_WIDTH - result.width) / 2;
           result.y = WIN_WIDTH / 4 * 3;
+          result.scale(2, 2);
           endScene.scene.addChild(result);
 
           const clearImg = game.assets[IMAGE_CLEAR];
