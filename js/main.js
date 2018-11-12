@@ -124,7 +124,6 @@ window.onload = function () {
             ((panel[p].position / WIN_SIZE) | 0) * ONE_WIDTH, game.fps / 2,
             enchant.Easing.QUAD_EASEINOUT);
         panel[p].tl.then(function () {
-          game.rootScene.removeChild(grid);
           const endTime = (new Date().getTime() - game.startTime) / 1000;
 
           const endScene = new enchant.nineleap.SplashScene();
