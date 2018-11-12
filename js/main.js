@@ -15,54 +15,18 @@ const PANEL_COUNT = WIN_SIZE * WIN_SIZE;
 
 window.onload = function () {
 
-  var game = new Game(WIN_WIDTH, WIN_WIDTH);
+  const game = new Game(WIN_WIDTH, WIN_WIDTH);
   game.fps = 24;
 
-  var PRELOAD_MATERIAL = [IMAGE, IMAGE_CLEAR];
+  const PRELOAD_MATERIAL = [IMAGE, IMAGE_CLEAR];
   if (PRELOAD_MATERIAL) {
     game.preload(PRELOAD_MATERIAL);
   }
 
 //乱数発生関数
-  var rand = function (num) {
+  const rand = function (num) {
     return (Math.random() * num) | 0;
-  }
-
-//グリッドライン用グループ
-  const Grid = enchant.Class.create(Group, {
-    initialize: function () {
-      Group.call(this);
-      for (let i = 0; i < WIN_SIZE + 1; i++) {
-        const leftLine = new Line((i % 4) * ONE_WIDTH, 0);
-        this.addChild(leftLine);
-        const rightLine = new Line((i % 4) * ONE_WIDTH + ONE_WIDTH - 1, 0);
-        this.addChild(rightLine);
-        const topLine = new Line(WIN_WIDTH / 2, (i % 4) * ONE_WIDTH - WIN_WIDTH / 2);
-        topLine.rotate(90);
-        this.addChild(topLine);
-        const bottomLine = new Line(WIN_WIDTH / 2, (i % 4) * ONE_WIDTH - WIN_WIDTH / 2 - 1);
-        bottomLine.rotate(90);
-        this.addChild(bottomLine);
-      }
-    }
-  });
-
-//グリッドライン用ライン
-  const Line = enchant.Class.create(Sprite, {
-    initialize: function (x, y) {
-      Sprite.call(this, 1, WIN_WIDTH);
-      const surface = new Surface(1, WIN_WIDTH);
-      const ctx = surface.context;
-      ctx.strokeStyle = '#000000';
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.lineTo(0, WIN_WIDTH);
-      ctx.stroke();
-      this.image = surface;
-      this.x = x;
-      this.y = y;
-    }
-  });
+  };
 
 //パネル
   const Panel = enchant.Class.create(Sprite, {
@@ -147,10 +111,6 @@ window.onload = function () {
     }
     panel[p].x = panel[p].y = WIN_WIDTH;
 
-//グリッド表示
-    const grid = new Grid();
-  //  game.rootScene.addChild(grid);
-
 //ゲーム終了判定
     game.endCheck = function () {
       let c = 0;
@@ -161,8 +121,8 @@ window.onload = function () {
       }
       if (c === PANEL_COUNT) {
         panel[p].tl.moveTo((panel[p].position % WIN_SIZE) * ONE_WIDTH,
-          ((panel[p].position / WIN_SIZE) | 0) * ONE_WIDTH, game.fps / 2,
-          enchant.Easing.QUAD_EASEINOUT);
+            ((panel[p].position / WIN_SIZE) | 0) * ONE_WIDTH, game.fps / 2,
+            enchant.Easing.QUAD_EASEINOUT);
         panel[p].tl.then(function () {
           game.rootScene.removeChild(grid);
           const endTime = (new Date().getTime() - game.startTime) / 1000;
@@ -171,8 +131,8 @@ window.onload = function () {
 
           const result = new MutableText();
           result.text = `${endTime}s`;
-          result.x = (WIN_WIDTH - result.width) / 2
-          result.y = WIN_WIDTH / 4 * 3
+          result.x = (WIN_WIDTH - result.width) / 2;
+          result.y = WIN_WIDTH / 4 * 3;
           endScene.scene.addChild(result);
 
           const clearImg = game.assets[IMAGE_CLEAR];

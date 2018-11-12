@@ -1,50 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <script type="text/javascript">
-      const MEMBER = "scoups";
-    </script>
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@ai_svt_">
-    <meta name="twitter:title" content="SVT 8-PAZZLE">
-    <meta name="twitter:image" content="https://ai-svt.github.io/8pazzle/img/scoups.jpg">
-    <script src='https://platform.twitter.com/widgets.js'></script>
-    <title>scoups - SVT 8-PAZZLE</title>
+  <meta charset="utf-8" />
+  <script type="text/javascript">
+    const MEMBER = "scoups";
+  </script>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@ai_svt_">
+  <meta name="twitter:title" content="SVT 8-PAZZLE">
+  <meta name="twitter:image" content="https://ai-svt.github.io/8pazzle/img/scoups.jpg">
+  <script src='https://platform.twitter.com/widgets.js'></script>
+  <title>scoups - SVT 8-PAZZLE</title>
 
-    <style type="text/css">
+  <style type="text/css">
     <!--
     body {
-    padding: 0;
-    margin: 0;
-    text-align: center;
-     }
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+
     #game {
-        height: 80vw;
-        width: 80vw;
-     }
+      height: 80vw;
+      width: 80vw;
+    }
+
     -->
-    </style>
+  </style>
 </head>
 <body>
-<iframe id="game" src="i_scoups.html" scrolling="no" marginheight="0" marginwidth="0" frameborder="0" style="border:none;" onload="this.contentWindow.focus();"></iframe>
-
-<p><div id="p_tweet"></div></p>
+<iframe id="game" src="i_scoups.html" scrolling="no" marginheight="0" marginwidth="0" frameborder="0"
+        style="border:none;" onload="this.contentWindow.focus();"></iframe>
 
 <p>
-<a href="svt_scoups.html"><img src="img/scoups.jpg" width="200px"></a>
-<a href="svt_jeonghan.html"><img src="img/jeonghan.jpg" width="200px"></a>
-<a href="svt_joshua.html"><img src="img/joshua.jpg" width="200px"></a>
-<a href="svt_hoshi.html"><img src="img/hoshi.jpg" width="200px"></a>
-<a href="svt_woozi.html"><img src="img/woozi.jpg" width="200px"></a>
-<a href="svt_dk.html"><img src="img/dk.jpg" width="200px"></a>
-<a href="svt_seungkwan.html"><img src="img/seungkwan.jpg" width="200px"></a>
+<div id="p_tweet"></div>
+</p>
+
+<p>
+  <a href="svt_scoups.html"><img src="img/scoups.jpg" width="200px"></a>
+  <a href="svt_jeonghan.html"><img src="img/jeonghan.jpg" width="200px"></a>
+  <a href="svt_joshua.html"><img src="img/joshua.jpg" width="200px"></a>
+  <a href="svt_hoshi.html"><img src="img/hoshi.jpg" width="200px"></a>
+  <a href="svt_woozi.html"><img src="img/woozi.jpg" width="200px"></a>
+  <a href="svt_dk.html"><img src="img/dk.jpg" width="200px"></a>
+  <a href="svt_seungkwan.html"><img src="img/seungkwan.jpg" width="200px"></a>
+</p>
+
+<p>
+  <a href="https://www.instagram.com/koreadispatch/?hl=ja" target="_blank">@koreadispatch</a>
 </p>
 
 <script type="text/javascript">
   var p_tweet = document.getElementById("p_tweet");
-  console.log(p_tweet)
-  p_tweet.innerHTML = "<a class=\"twitter-share-button\" href=\"https://twitter.com/intent/tweet?text=SVT%208-PAZZLE!&hashtags=seventeen,"+MEMBER+"&url=https%3A%2F%2Fai-svt.github.io%2F8pazzle%2Fsvt_"+MEMBER+".html\" target=\"_brank\">Tweet</a>";
+  p_tweet.innerHTML =
+      "<a class=\"twitter-share-button\" href=\"https://twitter.com/intent/tweet?text=SVT%208-PAZZLE!&hashtags=seventeen," +
+      MEMBER + "&url=https%3A%2F%2Fai-svt.github.io%2F8pazzle%2Fsvt_" + MEMBER +
+      ".html\" target=\"_brank\">Tweet</a>";
 </script>
 </body>
 </html>
