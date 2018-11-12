@@ -1,0 +1,34 @@
+{
+    "error_tips_table": [{
+        "cond": {
+            "title": "enchant.js が読み込まれていないようです。",
+            "content": "enchant.js を読み込むには、index.htmlの head タグの中に以下のタグを貼り付けましょう。[code]<script src='http://coderun.9leap.net/static/enchant.js-latest/enchant.js'></script>[/code] ダッシュボードに戻って「はじめてのenchant.js」から好きなプロジェクトを Fork してもOKです。"
+        },
+        "title": "enchant.js が読み込まれていないようです。"
+    }, {
+        "cond": {
+            "title": "構文エラーが起きているようです。",
+            "content": "enchant.js は読み込まれていますが、main.js の中で構文エラーが起きているか、enchant(); が実行されていないようです。"
+        },
+        "title": "構文エラーが起きているようです。"
+    }, {
+        "cond": {
+            "title": "new Game(); に失敗しているようです。",
+            "content": "enchant.js を読み込むには、index.htmlの head タグの中に以下のタグを貼り付けましょう。[code]<script src='http://coderun.9leap.net/static/enchant.js-latest/enchant.js'></script>[/code] ダッシュボードに戻って「はじめてのenchant.js」から好きなプロジェクトを Fork してもOKです。"
+        },
+        "title": "new Game(); に失敗しているようです。"
+    }, {
+        "cond": {
+            "title": "addChild を忘れていませんか?",
+            "content": "new Sprite() や new Label() などで生成したオブジェクトを表示するには、以下のように ゲームオブジェクトのルートシーンに[code]game.rootScene.addChild(sprite);[/code]"
+        },
+        "title": "addChild を忘れていませんか?"
+    }],
+    "default_tips_table": [{
+        "title": "ゲーム製作は『組み立てていく』パズル",
+        "content": "『ここまで小技ばっかりで、全然ゲームじゃないじゃん！』と思った方もいるかもしれませんが、ゲームを作る、ということは様々な小技を『組み立てていくパズルゲーム』のようなものです。<BR>つまり、『ゲームを作る』という行為が『ゲーム』足りえるのです。<BR>ここまでの小技と、いくつかのテクニックを組み合わせることにより、ゲームを作ることも出来ます。まだまだ様々な技がありますし、Web上だけでもかなりの技が公開されています。<BR>技が増えれば増えるほど、パズルのピースが増えて、完成品の品質も上がります"
+    },{
+        "title": "絵合わせパズル",
+        "content": "このゲームは9leapで公開している『絵合わせ16パズル』 <a href='http://9leap.net/games/1602'>http://9leap.net/games/1602</a>　と同じソースコードです。<BR>9leap側では、スコア機能、スコアランキング機能、twitterつぶやき機能などがあります。<BR>興味があれば、遊んでみてください"
+    }]
+}
